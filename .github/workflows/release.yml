@@ -70,7 +70,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
-          if ! grep -Eqi 'trusted publishing|authentication|E401|E403|not authorized|not authenticated' npm-publish.log; then
+          if ! grep -Eqi 'trusted publishing|authentication|E401|E403|E404|not authorized|not authenticated|not in this registry' npm-publish.log; then
             echo "Trusted publish failed for a non-auth reason; not falling back to NPM_TOKEN." >&2
             cat npm-publish.log >&2
             exit 1
