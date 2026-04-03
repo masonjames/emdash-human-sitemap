@@ -127,11 +127,27 @@ So the supported installation path for this package is:
 2. install it in your site,
 3. register it in `astro.config.mjs`.
 
+## CI and releases
+
+GitHub Actions runs CI for pushes and pull requests targeting `main`.
+
+To publish a new version:
+
+1. bump `version` in `package.json`,
+2. commit and push to `main`,
+3. create and push a matching stable tag from that `main` commit, like `v0.1.1`.
+
+The release workflow validates the package and then publishes it to npm.
+
+- CI currently installs with `--legacy-peer-deps` because the `emdash >=0.2.0` peer target has not landed on npm yet.
+- Preferred: configure npm Trusted Publishing for `masonjames/emdash-human-sitemap` using the workflow file `.github/workflows/release.yml`.
+- Fallback: add an `NPM_TOKEN` repository secret until trusted publishing is enabled.
+
 ## Development
 
 ```bash
 npm install
-npm run check
+npm run release:check
 ```
 
 ## License

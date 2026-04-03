@@ -18,7 +18,9 @@
   "scripts": {
     "test": "node --import tsx --test tests/**/*.test.ts",
     "typecheck": "tsc --noEmit",
-    "check": "npm run typecheck && npm run test"
+    "pack:check": "npm pack --dry-run",
+    "check": "npm run typecheck && npm run test",
+    "release:check": "npm run check && npm run pack:check"
   },
   "publishConfig": {
     "access": "public"
